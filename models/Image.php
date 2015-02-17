@@ -171,9 +171,9 @@ class Image extends \yii\db\ActiveRecord
                     if($size['height'] && $size['width']){
                         $image->cropThumbnailImage($size['width'], $size['height']);
                     }elseif($size['height']){
-                        $image->thumbnailImage(0, $size['height']);
+                        $image->resizeImage(0, $size['height'], \Imagick::FILTER_LANCZOS, 1);
                     }elseif($size['width']){
-                        $image->thumbnailImage($size['width'], 0);
+                        $image->resizeImage($size['width'], 0, \Imagick::FILTER_LANCZOS, 1);
                     }else{
                         throw new \Exception('Something wrong with this->module->parseSize($sizeString)');
                     }
